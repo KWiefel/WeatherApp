@@ -4,15 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WeatherApp</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>Welcome to the WeatherApp</h1>
-    </header>
+    <div></div>
     <main>
       <section class="input__wrapper">
         <form onsubmit="return false">
-          <h3>For which location do you want to check the weather?</h3>
           <input
             id="inputSearch"
             type="text"
@@ -20,30 +18,33 @@
           />
           <button>Show Weather</button>
         </form>
-        <hr />
       </section>
       <section class="output__wrapper">
         <h3>Here are the Weather-Informations you are looking for:</h3>
         <div class="output__dataToday">
           <h5>Weather in:</h5>
           <p class="outputName">Leverkusen</p>
-          <p class="outputTemp">20 Grad</p>
-          <p class="outputCloudiness">20%</p>
-          <p class="outputWeatherDescription">Light rain</p>
-          <h5>Obtained at:</h5>
-          <p class="outputDate">Montag 20.November 2023</p>
-          <hr />
+          <p class="outputTemp">20°</p>
+          <div class="extraInfo">
+            <p class="outputCloudiness">20%</p>
+            <p class="outputWeatherDescription">Light rain</p>
+          </div>
+          <div class="obtained">
+            <p>Obtained at:</p>
+            <p class="outputDate">Montag 20.November 2023</p>
+          </div>
         </div>
         <div class="output__dataFollowingDays">
           <h5>Here are the Weather-Informations for the next days:</h5>
-          <p class="outputTemp">20 Grad</p>
-          <p class="outputCloudiness">20%</p>
-          <p class="outputWeatherDescription">Light rain</p>
+          <p class="outputTemp">20°</p>
+          <div class="extraInfo">
+            <p class="outputCloudiness">20%</p>
+            <p class="outputWeatherDescription">Light rain</p>
+          </div>
         </div>
       </section>
     </main>
     <footer>
-      <hr />
       <p>Done with love from Runhong, Samuel & Konstantin</p>
       <a href="https://github.com/huangrunhong">Github Profile</a>
       <a href="https://github.com/samuelaliyari">Github Profile</a>
