@@ -31,7 +31,7 @@ getLatLon()
 
 const renderWeatherInfo = (city, weather) => {
 
-    // Creating HTML Elements and rendering the data to the elements
+    // Creating HTML Elements and rendering the data to the elements!
     
     const outputWrapper = document.body.querySelector(".output__wrapper");
     outputWrapper.innerHTML = ""
