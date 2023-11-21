@@ -1,11 +1,11 @@
-
-const cityName = document.body.querySelector("input")
-const submitBtn = document.body.querySelector("button")
+const cityName = document.body.querySelector("input");
+const submitBtn = document.body.querySelector("button");
 const main = document.body.querySelector("main");
-const outputWrapper = document.createElement('section');
+const outputWrapper = document.createElement("section");
 main.append(outputWrapper);
 
 const getLatLon = () => {
+
     cityName.addEventListener("input", ()=> {
         let api = ""
         let isANumber = isNaN(cityName.value) === false
@@ -30,7 +30,7 @@ const getLatLon = () => {
             .then(cityData => {
                 const lat = (cityData[0].lat.toFixed(2))
                 const lon = (cityData[0].lon.toFixed(2))
-                const api = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`
+                const api = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`
                 fetch(api)
                 .then(response => response.json())
                 .then(weatherData => {
@@ -43,7 +43,11 @@ const getLatLon = () => {
 })}
 
 getLatLon()
-
+            renderWeatherInfo(cityData, dataStorage);
+          });
+      });
+  });
+};
 
 
 const renderWeatherZip = (weather) => {
@@ -178,6 +182,14 @@ const renderWeatherInfo = (city, weather) => {
 }
 
 const renderUpcomingWeather = (weather) => {
+  const outputUpcoming = document.createElement("div");
+  const outputWrapper = document.body.querySelector(".output__wrapper");
+  const upcomingWrapper = document.body.querySelector(".upcommingWrapper");
+
+  for (let i = 7; i <= 39; i += 8) {
+    const cityTemp = document.createElement("p");
+    // cityTemp.classList.add("outputTemp");
+    cityTemp.textContent = Math.floor(weather.list[i].main.temp) + "°";
 
     const outputUpcoming = document.createElement('div');
     const outputWrapper = document.body.querySelector(".output__wrapper")
