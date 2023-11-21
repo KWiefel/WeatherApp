@@ -6,108 +6,26 @@ main.append(outputWrapper);
 
 const getLatLon = () => {
   cityName.addEventListener("input", () => {
-    let api = "";
-    let isANumber = isNaN(cityName.value) === false;
-    if (isANumber) {
-      if (cityName.value.length >= 5) {
-        api = `http://api.openweathermap.org/data/2.5/forecast?zip=${Number(
-          cityName.value
-        )},de&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
-        resetPage();
+    const api = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName.value}&limit=1&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
+    fetch(api)
+      .then((response) => response.json())
+      .then((cityData) => {
+        const lat = cityData[0].lat.toFixed(2);
+        const lon = cityData[0].lon.toFixed(2);
+        const api = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
         fetch(api)
           .then((response) => response.json())
           .then((weatherData) => {
             const dataStorage = { ...weatherData };
             outputWrapper.classList.add("output__wrapper");
-            renderWeatherZip(weatherData);
+
+            renderWeatherInfo(cityData, dataStorage);
           });
-      }
-    } else {
-      api = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName.value}&limit=1&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
-      resetPage();
-      fetch(api)
-        .then((response) => response.json())
-        .then((cityData) => {
-          const lat = cityData[0].lat.toFixed(2);
-          const lon = cityData[0].lon.toFixed(2);
-          const api = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
-          fetch(api)
-            .then((response) => response.json())
-            .then((weatherData) => {
-              const dataStorage = { ...weatherData };
-              outputWrapper.classList.add("output__wrapper");
-              renderWeatherInfo(cityData, dataStorage);
-            });
-        });
-    }
+      });
   });
 };
 
 getLatLon();
-
-const renderWeatherZip = (weather) => {
-  const outputWrapper = document.body.querySelector(".output__wrapper");
-  outputWrapper.innerHTML = "";
-
-  const upcomingWrapper = document.createElement("article");
-  upcomingWrapper.classList.add("upcommingWrapper");
-
-  const outputDataToday = document.createElement("div");
-  outputDataToday.classList.add("output__dataToday");
-
-  const extrainfo = document.createElement("div");
-  extrainfo.classList.add("extraInfo");
-
-  const cityName = document.createElement("p");
-  cityName.classList.add("outputName");
-  cityName.textContent = `${weather.city.name}`;
-
-  const cityTemp = document.createElement("p");
-  cityTemp.classList.add("outputTemp");
-  cityTemp.textContent = Math.floor(weather.list[0].main.temp) + "°";
-
-  const cityDescription = document.createElement("p");
-  cityDescription.textContent = weather.list[0].weather[0].main;
-
-  const bigFontWrapper = document.createElement("div");
-
-  bigFontWrapper.append(cityName, cityTemp);
-  // appending the elements to the HTML-Body
-
-  extrainfo.append(cityDescription);
-  outputDataToday.append(bigFontWrapper, extrainfo);
-  outputWrapper.append(outputDataToday, upcomingWrapper);
-
-  // Booleans for background change
-  const rainy = weather.list[0].weather[0].description
-    .toLowerCase()
-    .includes("rain");
-  const sunny = weather.list[0].weather[0].description
-    .toLowerCase()
-    .includes("sky");
-  const snow = weather.list[0].weather[0].description
-    .toLowerCase()
-    .includes("snow");
-  const cloudy = weather.list[0].weather[0].description
-    .toLowerCase()
-    .includes("cloud");
-
-  const background = document.body.querySelector("header > section");
-  if (rainy) {
-    background.style.backgroundImage = 'url("./assets/img/rain.gif")';
-  }
-  if (sunny) {
-    background.style.backgroundImage = 'url("./assets/img/sunny.gif")';
-  }
-  if (snow) {
-    background.style.backgroundImage = 'url("./assets/img/snow.gif")';
-  }
-  if (cloudy) {
-    background.style.backgroundImage = 'url("./assets/img/cloudy.gif")';
-  }
-
-  renderUpcomingWeather(weather);
-};
 
 const renderWeatherInfo = (city, weather) => {
   // Creating HTML Elements and rendering the data to the elements!
@@ -125,9 +43,9 @@ const renderWeatherInfo = (city, weather) => {
   extrainfo.classList.add("extraInfo");
 
   const cityName = document.createElement("p");
-
+  console.log(city);
   cityName.classList.add("outputName");
-  cityName.textContent = `${city[0].name}`;
+  cityName.innerHTML = `${city[0].name}`;
 
   const cityTemp = document.createElement("p");
   cityTemp.classList.add("outputTemp");
@@ -162,7 +80,7 @@ const renderWeatherInfo = (city, weather) => {
   const cloudy = weather.list[0].weather[0].description
     .toLowerCase()
     .includes("cloud");
-
+  console.log(rainy, snow, sunny, cloudy);
   const background = document.body.querySelector("header > section");
   if (rainy) {
     background.style.backgroundImage = 'url("./assets/img/rain.gif")';
@@ -178,6 +96,7 @@ const renderWeatherInfo = (city, weather) => {
   }
 
   renderUpcomingWeather(weather);
+  console.log("ok");
 };
 
 const renderUpcomingWeather = (weather) => {
@@ -209,9 +128,7 @@ const renderUpcomingWeather = (weather) => {
     upcomingDay.append(cityTemp, extraInfoUpcoming);
 
     upcomingWrapper.append(upcomingDay);
+    console.log(weather.list[i].dt_txt);
+    console.log(weather.list[i]);
   }
-};
-
-const resetPage = () => {
-  if (cityName.value.length === 0) window.location.reload();
 };
