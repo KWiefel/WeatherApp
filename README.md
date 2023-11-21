@@ -13,7 +13,19 @@ Willkommen bei der WeatherApp! Der einfachsten Webanwendung wenn es darum geht, 
 
 ## Screenshots
 
+<img src="./assets/img/Screenshot-3.png" alt="Flowchart">
+
+<img src="./assets/img/Screenshot-1.png" alt="Flowchart">
+
+<img src="./assets/img/Screenshot-2.png" alt="Flowchart">
+
+## Video der Anwendung
+
+https://youtu.be/hgU3KLCFq_E
+
 ## Link zur Demo
+
+https://kwiefel.github.io/WeatherApp/
 
 ## Tools/Technologien
 
@@ -39,5 +51,3 @@ Die WeatherApp ist für verschiedene Bildschirmgrößen optimiert und reagiert a
 ## Credits
 
 Mit Liebe von Runhong, Samuel & Konstantin gemacht.
-
----
