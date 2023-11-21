@@ -1,6 +1,9 @@
 
 const cityName = document.body.querySelector("input")
 const submitBtn = document.body.querySelector("button")
+const main = document.body.querySelector("main");
+const outputWrapper = document.createElement('section');
+main.append(outputWrapper);
 
 const getLatLon = () => {
     cityName.addEventListener("input", ()=> {
@@ -15,6 +18,8 @@ const getLatLon = () => {
             .then(response => response.json())
             .then(weatherData => {
                 const dataStorage = {...weatherData}
+                outputWrapper.classList.add("output__wrapper");
+
                 renderWeatherInfo(cityData, dataStorage)
             })
     })
@@ -26,61 +31,67 @@ getLatLon()
 
 const renderWeatherInfo = (city, weather) => {
 
-    // Creating HTML Elements and rendering the data to the elements
-    const main = document.body.querySelector("main")
+    // Creating HTML Elements and rendering the data to the elements!
     
-    const outputWrapper = document.createElement('section');
-    outputWrapper.classList.add("output__wrapper");
+    const outputWrapper = document.body.querySelector(".output__wrapper");
+    outputWrapper.innerHTML = ""
+
+    const upcomingWrapper = document.createElement('article');
+    upcomingWrapper.classList.add("upcommingWrapper")
+    
 
     const outputDataToday = document.createElement('div');
     outputDataToday.classList.add("output__dataToday");
 
+    const extrainfo = document.createElement('div');
+    extrainfo.classList.add("extraInfo");
+    
     const cityName = document.createElement('p');
     console.log(city)
     cityName.classList.add("outputName");
-    cityName.textContent = city[0].name;
-
+    cityName.innerHTML = `${city[0].name}`;
+    
     const cityTemp = document.createElement('p');
     cityTemp.classList.add("outputTemp");
     cityTemp.textContent = Math.floor(weather.list[0].main.temp) + "°";
-
     
-    const cityCloudiness = document.createElement('p');
-    cityCloudiness.classList.add("outputCloudiness");
-    cityCloudiness.textContent = weather.list[0].clouds.all + "%";
+    
+    // const cityCloudiness = document.createElement('p');
+    // cityCloudiness.classList.add("outputCloudiness");
+    // cityCloudiness.textContent = weather.list[0].clouds.all + "%";
     
     const cityDescription = document.createElement('p');
-    cityDescription.classList.add("outputWeatherDescription");
-    cityDescription.textContent = weather.list[0].weather[0].description;
+    cityDescription.textContent = weather.list[0].weather[0].main;
+ 
+    const bigFontWrapper = document.createElement('div');
     
-    const extraInfo = document.createElement('div');
-    extraInfo.classList.add("extraInfo");
-
+    bigFontWrapper.append(cityName, cityTemp)
     // appending the elements to the HTML-Body
-
-    extraInfo.append(cityCloudiness, cityDescription);
-    outputDataToday.append(cityName, cityTemp,);
-    outputWrapper.append(outputDataToday);
-    main.append(outputWrapper);
-
-
+    
+    extrainfo.append(cityDescription)
+    outputDataToday.append(bigFontWrapper, extrainfo);
+    outputWrapper.append(outputDataToday, upcomingWrapper);
+    
+    
+    
     // Booleans for background change
     const rainy = weather.list[0].weather[0].description.toLowerCase().includes("rain")
     const sunny = weather.list[0].weather[0].description.toLowerCase().includes("sky")
     const snow = weather.list[0].weather[0].description.toLowerCase().includes("snow")
     const cloudy = weather.list[0].weather[0].description.toLowerCase().includes("cloud")
     console.log(rainy, snow, sunny, cloudy )
+    const background = document.body.querySelector("header > section")
     if (rainy) {
-        document.body.style.backgroundImage = 'url("./assets/img/rain.gif")'
+        background.style.backgroundImage = 'url("./assets/img/rain.gif")'
     }
     if (sunny) {
-        document.body.style.backgroundImage = 'url("./assets/img/sunny.gif")'
+        background.style.backgroundImage = 'url("./assets/img/sunny.gif")'
     }
     if (snow) {
-        document.body.style.backgroundImage = 'url("./assets/img/snow.gif")'
+        background.style.backgroundImage = 'url("./assets/img/snow.gif")'
     }
     if (cloudy) {
-        document.body.style.backgroundImage = 'url("./assets/img/cloudy.gif")'
+        background.style.backgroundImage = 'url("./assets/img/cloudy.gif")'
     }
 
     renderUpcomingWeather(weather);
@@ -91,28 +102,36 @@ const renderUpcomingWeather = (weather) => {
 
     const outputUpcoming = document.createElement('div');
     const outputWrapper = document.body.querySelector(".output__wrapper")
-
+    const upcomingWrapper = document.body.querySelector(".upcommingWrapper")
 
     for (let i = 7; i <= 39; i += 8) {
 
+        
+
         const cityTemp = document.createElement('p');
-        cityTemp.classList.add("outputTemp");
+        // cityTemp.classList.add("outputTemp");
         cityTemp.textContent = Math.floor(weather.list[i].main.temp) + "°";
         
         const cityCloudiness = document.createElement('p');
-        cityCloudiness.classList.add("outputCloudiness");
+        // cityCloudiness.classList.add("outputCloudiness");
         cityCloudiness.textContent = weather.list[i].clouds.all + "%";
         
-        const cityDescription = document.createElement('p');
-        cityDescription.classList.add("outputWeatherDescription");
-        cityDescription.textContent = weather.list[i].weather[0].description;
+        const cityDescription = document.createElement('img');
+        // cityDescription.classList.add("outputWeatherDescription");
+        const icon = weather.list[i].weather[0].icon;
+        const iconURL = "http://openweathermap.org/img/w/" + icon + ".png"
+        cityDescription.setAttribute("src", iconURL)
 
         const extraInfoUpcoming = document.createElement('div');
         extraInfoUpcoming.classList.add("extraInfo");
-        extraInfoUpcoming.append(cityCloudiness, cityDescription)
+        extraInfoUpcoming.append(cityDescription)
+
+        const upcomingDay = document.createElement('div');
+        upcomingDay.classList.add("upcomingDay")
+        upcomingDay.append(cityTemp, extraInfoUpcoming)
         
-        outputUpcoming.append(cityTemp);
-        outputWrapper.append(outputUpcoming);
+
+        upcomingWrapper.append(upcomingDay);
         console.log(weather.list[i].dt_txt);
         console.log(weather.list[i]);
     }
