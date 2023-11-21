@@ -51,5 +51,3 @@ Die WeatherApp ist für verschiedene Bildschirmgrößen optimiert und reagiert a
 ## Credits
 
 Mit Liebe von Runhong, Samuel & Konstantin gemacht.
-
----
