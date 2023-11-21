@@ -11,7 +11,7 @@ const getLatLon = () => {
         let isANumber = isNaN(cityName.value) === false
         if (isANumber) {
             if (cityName.value.length >= 5) {
-                api = `http://api.openweathermap.org/data/2.5/forecast?zip=${Number(cityName.value)},de&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`
+                api = `https://api.openweathermap.org/data/2.5/forecast?zip=${Number(cityName.value)},de&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`
                 resetPage()
                 fetch(api)
                 .then(response => response.json())
@@ -23,7 +23,7 @@ const getLatLon = () => {
             }
 
         } else {
-            api = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName.value}&limit=1&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`
+            api = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName.value}&limit=1&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`
             resetPage()
             fetch(api)
             .then(response => response.json())
