@@ -6,13 +6,13 @@ main.append(outputWrapper);
 
 const getLatLon = () => {
   cityName.addEventListener("input", () => {
-    const api = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName.value}&limit=1&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
+    const api = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName.value}&limit=1&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
     fetch(api)
       .then((response) => response.json())
       .then((cityData) => {
         const lat = cityData[0].lat.toFixed(2);
         const lon = cityData[0].lon.toFixed(2);
-        const api = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
+        const api = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=8ff0dd8b9a61cd670eec3ca9cba7e8f2`;
         fetch(api)
           .then((response) => response.json())
           .then((weatherData) => {
