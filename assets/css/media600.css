@@ -1,0 +1,8 @@
+@media screen and (max-width: 600px) {
+  .output__dataFollowingDays {
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

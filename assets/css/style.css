@@ -29,17 +29,26 @@ img {
                                 BODY
 =====================================================================*/
 body {
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
+  background-position: center;
+  background-image: url(../image/ff4d344d44981a5618deb925f0b8d381.gif);
+  background-image: url(../image/cloudy.gif);
+  background-image: url(../image/snow_end.gif);
+  /* background-image: url(../image/sunny_end.gif); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 3rem;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-body header {
-  overflow: hidden;
-}
-body header section {
-  position: absolute;
-  top: 0;
-  bottom: 0;
+body > div {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
   left: 0;
   right: 0;
   z-index: -1;
@@ -82,20 +91,25 @@ body main {
 body main section {
   width: 80%;
   margin: 0 auto;
+  width: 60%;
 }
-body main section:nth-of-type(1) {
-  border-radius: 1rem;
-  padding: 5%;
+input,
+button {
+  margin-block: 1rem;
+  font-family: Jost-light;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  border: none;
+  margin-inline: 0.25rem;
 }
-body main section:nth-of-type(1) input {
-  background-color: rgba(0, 0, 0, 0.747);
+input {
   width: 50%;
   height: 4rem;
   font-size: 1.7rem;
   padding: 1% 3%;
   border-radius: 1rem;
   text-align: center;
-  border: 2px solid #979DAC;
+  border: 2px solid #979dac;
   color: #dde5fb;
 }
 body main section:nth-of-type(1) input:focus {
@@ -110,7 +124,9 @@ body main .output__wrapper {
   background-color: rgba(0, 0, 0, 0.7254901961);
   padding: 2%;
   border-radius: 1rem;
-  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body main .output__wrapper .output__dataToday {
   display: flex;
@@ -140,41 +156,63 @@ body main .output__wrapper .output__dataToday div:nth-of-type(2) {
 body main .output__wrapper .output__dataToday div:nth-of-type(2) img {
   width: 7rem;
 }
-body main .output__wrapper .output__dataToday div:nth-of-type(2) p {
-  margin-top: 1%;
-  font-size: 3rem;
-  font-family: Jost-light;
-  transform: rotate(-90deg);
-  position: relative;
-  top: 30%;
-  left: 25%;
-}
-body main .output__wrapper .upcommingWrapper {
-  display: flex;
-  padding: 1%;
-  background-color: rgba(0, 0, 0, 0.4823529412);
-  gap: 1.5rem;
+
+.extraInfo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10%;
   border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.411);
+  padding: 1rem 2rem;
 }
-body main .output__wrapper .upcommingWrapper p {
+
+.extraInfo p {
+  font-size: 2rem;
   font-family: Jost-light;
   font-size: 8rem;
 }
 body main .output__wrapper .upcommingWrapper p:nth-of-type(1) {
   font-size: 4rem;
   font-family: Jost-light;
-}
-body main .output__wrapper .upcommingWrapper div {
   display: flex;
+  justify-content: center;
+  gap: 1rem;
   align-items: center;
-}
-body main .output__wrapper .upcommingWrapper div img {
-  width: 75px;
-}
-body footer {
-  text-align: center;
-  color: #dde5fb;
-  margin-top: 20%;
+  /* margin-bottom: 1rem; */
 }
 
-/*# sourceMappingURL=style.css.map */
+.output__dataFollowingDays {
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+.output__dataFollowingDays .outputTemp {
+  font-size: 2rem;
+}
+.output__dataFollowingDays .extraInfo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.422);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.output__dataFollowingDays .extraInfo p {
+  font-size: 1rem;
+}
+.output__dataFollowingDays .extraInfo p:nth-of-type(1) {
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+footer {
+  margin-top: 1rem;
+  font-family: Jost-light;
+}
+
+footer > a {
+  text-decoration: none;
+  margin-inline: 2rem;
+  color: rgba(255, 255, 255, 0.67);
+}
