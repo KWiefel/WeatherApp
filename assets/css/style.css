@@ -6,154 +6,175 @@
   font-family: Jost-medium;
   src: url(../fonts/Jost-Medium.ttf);
 }
-
+/* ====================================================================
+                                RESET
+=====================================================================*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ====================================================================
+                                BODY
+=====================================================================*/
 body {
-  height: 100vh;
-  background-position: center;
-  background-image: url(../image/ff4d344d44981a5618deb925f0b8d381.gif);
-  background-image: url(../image/cloudy.gif);
-  background-image: url(../image/snow_end.gif);
-  background-image: url(../image/sunny_end.gif);
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 auto;
-  text-align: center;
-  padding-top: 2rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
-body > div {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  left: 0;
+body header {
+  overflow: hidden;
+}
+body header section {
+  position: absolute;
   top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: -1;
+  backdrop-filter: saturate(80%);
+  background: center/cover no-repeat;
 }
-
-h1 {
-  font-family: Jost-medium;
-  font-size: 3rem;
+body header article {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  top: -10%;
+  bottom: -10%;
+  left: -10%;
+  right: -10%;
+  z-index: -1;
+  background-color: rgb(0, 0, 0);
+  gap: 1%;
 }
-main {
+body header article div {
+  opacity: 0.6;
+  transform: rotate(15deg);
+}
+body header article div:nth-of-type(1) {
+  background: url(../img/cloudy.gif) center/cover no-repeat;
+}
+body header article div:nth-of-type(2) {
+  background: url(../img/rain.gif) center/cover no-repeat;
+}
+body header article div:nth-of-type(3) {
+  background: url(../img/snow.gif) center/cover no-repeat;
+}
+body header article div:nth-of-type(4) {
+  background: url(../img/sunny.gif) center/cover no-repeat;
+}
+body main {
+  text-align: center;
+  padding: 5%;
+  padding-top: 1%;
+}
+body main section {
+  width: 80%;
   margin: 0 auto;
-  width: 60%;
 }
-.input__wrapper h3 {
-  font-family: Jost-light;
-  font-size: 1rem;
-}
-input,
-button {
-  margin-block: 1rem;
-  font-family: Jost-light;
-  padding: 0.5rem 2rem;
-  border-radius: 2rem;
-  border: none;
-  margin-inline: 0.25rem;
-}
-input {
-  width: 50%;
-}
-button {
-  background-color: #0466c8;
-  color: white;
-}
-.output__wrapper {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 2rem 2rem;
+body main section:nth-of-type(1) {
   border-radius: 1rem;
+  padding: 5%;
 }
-.output__wrapper > h3 {
-  margin-top: 1rem;
+body main section:nth-of-type(1) input {
+  background-color: rgba(0, 0, 0, 0.747);
+  width: 50%;
+  height: 4rem;
+  font-size: 1.7rem;
+  padding: 1% 3%;
+  border-radius: 1rem;
+  text-align: center;
+  border: 2px solid #979DAC;
+  color: #dde5fb;
 }
-.output__wrapper > h3,
-h5 {
+body main section:nth-of-type(1) input:focus {
+  outline: none;
+  background-color: black;
+}
+body main section:nth-of-type(1) input::placeholder {
+  color: rgba(255, 255, 255, 0.723);
+}
+body main .output__wrapper {
+  color: #dde5fb;
+  background-color: rgba(0, 0, 0, 0.7254901961);
+  padding: 2%;
+  border-radius: 1rem;
+  width: fit-content;
+}
+body main .output__wrapper .output__dataToday {
+  display: flex;
+  margin: 0 auto;
+}
+body main .output__wrapper .output__dataToday p {
   font-family: Jost-light;
-  font-size: 1rem;
-}
-.outputName {
-  font-family: Jost-light;
-  font-size: 2rem;
-}
-
-.outputTemp {
-  font-family: Jost-Medium;
   font-size: 8rem;
 }
-
-.extraInfo {
-  margin: 1rem 2rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+body main .output__wrapper .output__dataToday p:nth-of-type(1) {
+  font-size: 4rem;
+  font-family: Jost-light;
+}
+body main .output__wrapper .output__dataToday div {
+  display: flex;
+  padding: 1%;
+}
+body main .output__wrapper .output__dataToday div:nth-of-type(1) {
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-around;
+  width: 100%;
+}
+body main .output__wrapper .output__dataToday div:nth-of-type(2) {
+  flex-direction: column;
+}
+body main .output__wrapper .output__dataToday div:nth-of-type(2) img {
+  width: 7rem;
+}
+body main .output__wrapper .output__dataToday div:nth-of-type(2) p {
+  margin-top: 1%;
+  font-size: 3rem;
+  font-family: Jost-light;
+  transform: rotate(-90deg);
+  position: relative;
+  top: 30%;
+  left: 25%;
+}
+body main .output__wrapper .upcommingWrapper {
+  display: flex;
+  padding: 1%;
+  background-color: rgba(0, 0, 0, 0.4823529412);
+  gap: 1.5rem;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(0, 0, 0, 0.411);
-  padding-block: 2rem;
 }
-
-.extraInfo p {
-  font-size: 2rem;
-
+body main .output__wrapper .upcommingWrapper p {
   font-family: Jost-light;
-  color: white;
+  font-size: 8rem;
 }
-
-.extraInfo p:nth-of-type(1) {
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.obtained {
+body main .output__wrapper .upcommingWrapper p:nth-of-type(1) {
+  font-size: 4rem;
   font-family: Jost-light;
+}
+body main .output__wrapper .upcommingWrapper div {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
   align-items: center;
-  /* margin-bottom: 1rem; */
+}
+body main .output__wrapper .upcommingWrapper div img {
+  width: 75px;
+}
+body footer {
+  text-align: center;
+  color: #dde5fb;
+  margin-top: 20%;
 }
 
-.output__dataFollowingDays {
-  width: 80%;
-  margin-top: 4rem;
-  margin-inline: auto;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-}
-.output__dataFollowingDays .outputTemp {
-  font-size: 2rem;
-}
-.output__dataFollowingDays .extraInfo {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.422);
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-}
-.output__dataFollowingDays .extraInfo p:nth-of-type(1) {
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
-}
-footer {
-  margin-top: 4rem;
-  font-family: Jost-light;
-}
-footer > p {
-  margin-top: 1rem;
-}
-footer > a {
-  text-decoration: none;
-  margin-inline: 2rem;
-  color: rgba(255, 255, 255, 0.67);
-}
+/*# sourceMappingURL=style.css.map */
