@@ -172,7 +172,7 @@ body main .output__wrapper .upcommingWrapper div {
 body main .output__wrapper .upcommingWrapper div div {
   border-right: 1px solid rgba(255, 255, 255, 0.5);
 }
-body main .output__wrapper .upcommingWrapper div img {
+body main .output__wrapper .upcommingWrapper div div img {
   width: 75px;
   padding-right: 1rem;
 }
