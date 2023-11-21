@@ -56,6 +56,7 @@ body header article {
   right: -10%;
   z-index: -1;
   background-color: rgb(0, 0, 0);
+  transition: transform 200ms linear;
   gap: 1%;
 }
 body header article div {
@@ -95,7 +96,7 @@ body main section:nth-of-type(1) input {
   padding: 1% 3%;
   border-radius: 1rem;
   text-align: center;
-  border: 2px solid #979DAC;
+  border: 2px solid #979dac;
   color: #dde5fb;
 }
 body main section:nth-of-type(1) input:focus {
@@ -151,7 +152,7 @@ body main .output__wrapper .output__dataToday div:nth-of-type(2) p {
 }
 body main .output__wrapper .upcommingWrapper {
   display: flex;
-  padding: 1%;
+  padding: 2% 4%;
   background-color: rgba(0, 0, 0, 0.4823529412);
   gap: 1.5rem;
   border-radius: 1rem;
@@ -168,13 +169,30 @@ body main .output__wrapper .upcommingWrapper div {
   display: flex;
   align-items: center;
 }
-body main .output__wrapper .upcommingWrapper div img {
+body main .output__wrapper .upcommingWrapper div div {
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+body main .output__wrapper .upcommingWrapper div div img {
   width: 75px;
+  padding-right: 1rem;
 }
 body footer {
   text-align: center;
   color: #dde5fb;
   margin-top: 20%;
+}
+
+@media screen and (max-width: 1150px) {
+  body header article {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    gap: 0.2%;
+  }
+  body header article div {
+    transform: rotate(0deg);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
